@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Our Team</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      padding-top: 64px; /* Add padding for fixed header height */
+
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <!-- Header Section -->
+  <header class="bg-[#1D81A9] py-4 w-full fixed top-0 left-0 z-2 shadow-md">
+    <div class="flex justify-between items-center px-8">
+      <div class="text-2xl font-bold text-white">
+        <a href="home.html" class="text-white hover:text-gray-200">
+        <i class="fas fa-stethoscope"></i> HealthHope
+      </div>
+      <nav class="space-x-4 mr-10">
+        <a class="text-white hover:text-gray-200" href="about_us.html">About Us</a>
+        <a class="text-white hover:text-gray-200" href="our_team.html">Our Doctors</a>
+        <a class="text-white hover:text-gray-200" href="resources.html">Resources</a>
+        <a class="text-white hover:text-gray-200" href="contactus.html">Contact Us</a>
+      </nav>
+    </div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Sign Up Modal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .profile-icon {
+            font-size: 30px;
+            cursor: pointer;
+            margin-top: 10;
+            position: fixed;
+            top: 8px;
+            right: 20px;
+        }
+
+        .modal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form h2 {
+            text-align: center; /* Center the heading text */
+        }
+
+
+        .form input {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form button {
+            padding: 10px;
+            background-color: #1D81A9; /* Change the button color here */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form button:hover {
+            background-color: #156a8a; /* Optional: Change the hover color for better contrast */
+          }
+
+        .hidden {
+            display: none;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-icon" onclick="openModal()">
+        👤
+    </div>
+
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="form-container">
+              <div id="login-form" class="form">
+                <h2>Login</h2>
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button onclick="login()">Login</button> <!-- Updated this line -->
+
+
+                <p>Don't have an account? <a href="#" onclick="showSignUp()">Sign Up</a></p>
+            </div>
+
+                </div>
+                <div id="signup-form" class="form hidden">
+                    <h2>Sign Up</h2>
+                    <input type="text" id="signup-username" placeholder="Username" required>
+                    <input type="email" id="signup-email" placeholder="Email" required>
+                    <input type="password" id="signup-password" placeholder="Password" required>
+                    <button onclick="signUp()">Sign Up</button>
+                    <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let users = [];
+
+        function openModal() {
+            document.getElementById('modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+        }
+
+        function showSignUp() {
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('signup-form').classList.remove('hidden');
+        }
+
+        function showLogin() {
+            document.getElementById('signup-form').classList.add('hidden');
+            document.getElementById('login-form').classList.remove('hidden');
+        }
+
+        function login() {
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+
+    const user = users.find(user => user.email === email && user.password === password);
+
+    if (user) {
+        alert(`Welcome back, ${user.username}!`);
+        window.location.href = 'dashboard.html';  // Redirects to the dashboard page
+    } else {
+        alert('Invalid email or password');
+    }
+}
+
+const users = [
+    {
+        email: 'user1@example.com',
+        password: 'password123',
+        username: 'UserOne'
+    },
+    {
+        email: 'user2@example.com',
+        password: 'mypassword',
+        username: 'UserTwo'
+    },
+    {
+        email: 'user3@example.com',
+        password: 'secret123',
+        username: 'UserThree'
+    }
+];
+
+
+        function signUp() {
+            const username = document.getElementById('signup-username').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+
+            const user = {
+                username,
+                email,
+                password
+            };
+
+            users.push(user);
+
+            alert(`Welcome, ${username}! You have successfully signed up.`);
+            showLogin();
+        }
+    </script>
+  </header>
+
+  <section class="relative bg-cover bg-center h-96 w-full" style="background-image: url('https://plus.unsplash.com/premium_photo-1681843126728-04eab730febe?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1lZGljYWwlMjB0ZWFtfGVufDB8fDB8fHww');">
+  <div class="absolute inset-0 bg-[#1D81A9] opacity-40"></div>
+  <div class="h-full flex items-center justify-center">
+    <div class="text-center text-white px-8">
+      <h1 class="text-5xl font-bold text-white" style="text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);">United in Care, Expertise in Healing</h1>
+      <p class="mt-4 text-lg text-white" style="text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);">Our team combines deep expertise with compassionate care, providing personalized treatment for every patient.</p>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Our Team Section -->
+    <section class="py-16">
+      <div class="container mx-auto text-center px-20">
+      <h2 class="text-3xl font-bold mb-8">Our Team of Doctors</h2>
+      <p class="mb-16 max-w-2xl mx-auto">Meet our dedicated team of specialists, each committed to providing exceptional patient care and advancing healthcare standards.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12">
+        
+        <!-- Doctor 1 -->
+        <div class="flex items-center">
+          <img alt="Portrait of Dr. Ethan" class="rounded-full shadow-lg w-32 h-32" src="https://storage.googleapis.com/a1aa/image/iUFSdTojvd7WBRd7N4KniAusRVw5hVkKAwifMAseakPQPkqTA.jpg" />
+          <div class="ml-8 text-left">
+            <h3 class="text-xl font-bold">Dr. Ethan</h3>
+            <p class="text-gray-600">Clinical Assistant Professor</p>
+            <p class="text-gray-600">Email: ethan@cardiology.ac</p>
+            <p class="text-gray-600">Specialty: Cardiology</p>
+            <a class="mt-4 inline-block bg-[#1D81A9] text-white py-2 px-4 rounded-full hover:bg-blue-600" href="#">Book Appointment</a>
+          </div>
+        </div>
+
+        <!-- Doctor 2 -->
+        <div class="flex items-center">
+          <img alt="Portrait of Dr. Amrita Seth" class="rounded-full shadow-lg w-32 h-32" src="https://storage.googleapis.com/a1aa/image/7WFcAxSQHRpFEdQfdPITbNdC0qpDT1YZiiFUe8VVBbeqeQqOB.jpg" />
+          <div class="ml-8 text-left">
+            <h3 class="text-xl font-bold">Dr. Amrita Seth</h3>
+            <p class="text-gray-600">Professor</p>
+            <p class="text-gray-600">Email: amrita@oncology.ac</p>
+            <p class="text-gray-600">Specialty: Gynecologic Oncology</p>
+            <a class="mt-4 inline-block bg-[#1D81A9] text-white py-2 px-4 rounded-full hover:bg-blue-600" href="#">Book Appointment</a>
+          </div>
+        </div>
+
+        <!-- Doctor 3 -->
+        <div class="flex items-center">
+          <img alt="Portrait of Dr. Leo Tan" class="rounded-full shadow-lg w-32 h-32" src="https://i.imgur.com/DoU23aF_d.jpeg?maxwidth=520&shape=thumb&fidelity=high"/>
+          <div class="ml-8 text-left">
+            <h3 class="text-xl font-bold">Dr. Leo Tan</h3>
+            <p class="text-gray-600">Senior Consultant</p>
+            <p class="text-gray-600">Email: leo@neurology.ac</p>
+            <p class="text-gray-600">Specialty: Neurology</p>
+            <a class="mt-4 inline-block bg-[#1D81A9] text-white py-2 px-4 rounded-full hover:bg-blue-600" href="#">Book Appointment</a>
+          </div>
+        </div>
+
+        <!-- Doctor 4 -->
+        <div class="flex items-center">
+          <img alt="Portrait of Dr. Riya Ford" class="rounded-full shadow-lg w-32 h-32" src="https://storage.googleapis.com/a1aa/image/Xfk6L4I8IIT0Z6FTHFjxPCu0fjE61IeXvYQ6QdZqLD7meQqOB.jpg" />
+          <div class="ml-8 text-left">
+            <h3 class="text-xl font-bold">Dr. Riya Ford</h3>
+            <p class="text-gray-600">Junior Assistant Professor</p>
+            <p class="text-gray-600">Email: riya@neurosurgery.ac</p>
+            <p class="text-gray-600">Specialty: Ophthalmology, Pediatric Surgery</p>
+            <a class="mt-4 inline-block bg-[#1D81A9] text-white py-2 px-4 rounded-full hover:bg-blue-600" href="#">Book Appointment</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Founders and Key Leaders Section -->
+  <section class="py-16 bg-gray-100">
+    <div class="container mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-8">Founders and Key Leaders</h2>
+      <p class="mb-16 max-w-2xl mx-auto">Meet the visionary founders and key leaders who established our organization and continue to guide its mission and values.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        
+        <!-- Founder 1 -->
+        <div class="flex flex-col items-center text-center">
+          <img alt="Portrait of Dr. Sarah Lee" class="rounded-full shadow-lg w-32 h-32 mb-4" src="https://img.freepik.com/premium-photo/confident-young-businesswoman-portrait-white-background_924727-126221.jpg?ga=GA1.1.507329635.1724068614&semt=ais_hybrid" />
+          <h3 class="text-xl font-bold">Dr Sarah Lee</h3>
+          <p class="text-gray-600">Co-Founder & CEO</p>
+          <p class="mt-4 text-gray-600 max-w-xs">Dr. Sarah Lee is a renowned leader in healthcare, dedicated to improving patient outcomes through innovative practices.</p>
+        </div>
+
+        <!-- Founder 2 -->
+        <div class="flex flex-col items-center text-center">
+          <img alt="Portrait of Dr. Mark Smith" class="rounded-full shadow-lg w-32 h-32 mb-4" src="https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?ga=GA1.1.507329635.1724068614&semt=ais_hybrid" />
+          <h3 class="text-xl font-bold">Dr Mark Smith</h3>
+          <p class="text-gray-600">Co-Founder & Medical Director</p>
+          <p class="mt-4 text-gray-600 max-w-xs">Dr. Mark Smith leads our medical initiatives and is passionate about advancing healthcare quality and accessibility.</p>
+        </div>
+
+        <!-- Founder 3 -->
+        <div class="flex flex-col items-center text-center">
+          <img alt="Portrait of Dr. Emily Johnson" class="rounded-full shadow-lg w-32 h-32 mb-4" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.0.3&q=80&w=400" />
+          <h3 class="text-xl font-bold">Dr Emily Johnson</h3>
+          <p class="text-gray-600">Chief Operations Officer</p>
+          <p class="mt-4 text-gray-600 max-w-xs">Dr. Emily Johnson oversees our operational strategies and drives organizational efficiency and patient satisfaction.</p>
+        </div>
+
+        <!-- Founder 4 -->
+        <div class="flex flex-col items-center text-center">
+          <img alt="Portrait of Dr. Tom Brown" class="rounded-full shadow-lg w-32 h-32 mb-4" src="https://img.freepik.com/free-photo/bearded-young-man-wearing-shirt_273609-5938.jpg?ga=GA1.1.507329635.1724068614&semt=ais_hybrid" />
+          <h3 class="text-xl font-bold">Dr Tom Brown</h3>
+          <p class="text-gray-600">Head of Research</p>
+          <p class="mt-4 text-gray-600 max-w-xs">Dr. Tom Brown leads our research initiatives, fostering innovation and advancements in medical science.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Culture and Values Section -->
+  <section class="py-16">
+    <div class="container mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-8">Team Culture and Values</h2>
+      <p class="mb-8 max-w-2xl mx-auto">At HealthHope, we foster a culture that values collaboration, respect, and integrity. Our team is dedicated to continuous learning and improvement, always striving to enhance our skills and knowledge to better serve our patients.</p>
+      <p class="mb-8 max-w-2xl mx-auto">We encourage open communication and embrace diversity, knowing that a variety of perspectives strengthens our practice. Together, we are committed to creating a supportive environment where every team member can thrive and contribute to our shared mission.</p>
+      
+    </div>
+  </section>
+
+
+</body>
+</html>
+
+<html>
+ <head>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+ </head>
+ 
+ <body class="bg-blue-100">
+
+  <div class="container mx-auto py-8">
+   <div class="text-center">
+    <i class="fas fa-stethoscope"></i> HealthHope
+    <h1 class="text-2xl font-semibold">
+    </h1>
+    <p class="italic">
+     "Connecting healthcare professionals with underserved communities to promote global health equity"
+    </p>
+   </div>
+   <div class="border-t border-black my-0">
+   </div>
+         <div class="text-center bg-[#1D81A9] text-white py-4">
+
+   <div class="grid grid-cols-3 gap-8 text-center">
+
+    <div>
+     <h2 class="text-xl font-semibold">
+      Quick links
+     </h2>
+     <div class="border-t-2 border-blue-400 w-16 mx-auto my-2">
+     </div>
+     <ul class="list-none">
+      <li>
+        <a href="our_team.html" class="text-white-500 hover:text-blue-700">Our Team</a>
+      </li>
+      <li>
+      <!-- Modify the Register link to open the login modal -->
+      <a href="javascript:void(0);" onclick="openModal()" class="text-white-500 hover:text-blue-700">Register</a>
+    </li>
+
+
+<!-- Include the modal code here -->
+<div id="modal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="form-container">
+            <div id="login-form" class="form">
+                <h2>Login</h2>
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button onclick="login()">Login</button>
+                <p>Don't have an account? <a href="#" onclick="showSignUp()">Sign Up</a></p>
+            </div>
+            <div id="signup-form" class="form hidden">
+                <h2>Sign Up</h2>
+                <input type="text" id="signup-username" placeholder="Username" required>
+                <input type="email" id="signup-email" placeholder="Email" required>
+                <input type="password" id="signup-password" placeholder="Password" required>
+                <button onclick="signUp()">Sign Up</button>
+                <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let users = [];
+
+    function openModal() {
+        document.getElementById('modal').classList.remove('hidden');
+        showLogin(); // Show the login form when the modal opens
+    }
+
+    function closeModal() {
+        document.getElementById('modal').classList.add('hidden');
+    }
+
+    function showSignUp() {
+        document.getElementById('login-form').classList.add('hidden');
+        document.getElementById('signup-form').classList.remove('hidden');
+    }
+
+    function showLogin() {
+        document.getElementById('signup-form').classList.add('hidden');
+        document.getElementById('login-form').classList.remove('hidden');
+    }
+
+    function login() {
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+
+        const user = users.find(user => user.email === email && user.password === password);
+
+        if (user) {
+            alert(`Welcome back, ${user.username}!`);
+        } else {
+            alert('Invalid email or password');
+        }
+    }
+
+    function signUp() {
+        const username = document.getElementById('signup-username').value;
+        const email = document.getElementById('signup-email').value;
+        const password = document.getElementById('signup-password').value;
+
+        const user = {
+            username,
+            email,
+            password
+        };
+
+        users.push(user);
+
+        alert(`Welcome, ${username}! You have successfully signed up.`);
+        showLogin();
+    }
+</script>
+      <li>
+        <a href="our_team.html" class="text-white-500 hover:text-blue-700">Resources</a>
+      </li>
+      <li>
+       FAQ
+      </li>
+     </ul>
+    </div>
+    <div>
+    <h2 class="text-xl font-semibold">
+        Social Medias
+    </h2>
+    
+   <div class="border-t-2 border-blue-400 w-16 mx-auto my-2"></div>
+<ul class="list-none flex justify-center space-x-4">
+    <li>
+        <a href="https://www.facebook.com/YourPageName" target="_blank" class="text-blue-800 hover:text-blue-600">
+            <i class="fab fa-facebook-f fa-lg"></i>
+        </a>
+    </li>
+    <li>
+        <a href="https://www.instagram.com/YourUsername" target="_blank" class="text-red-600 hover:text-red-400">
+            <i class="fab fa-instagram fa-lg"></i>
+        </a>
+    </li>
+    <li>
+        <a href="https://wa.me/YourPhoneNumber" target="_blank" class="text-green-500 hover:text-green-500">
+            <i class="fab fa-whatsapp fa-lg"></i>
+        </a>
+    </li>
+    <li>
+        <a href="https://twitter.com/YourUsername" target="_blank" class="text-blue-500 hover:text-blue-300">
+            <i class="fab fa-twitter fa-lg"></i>
+        </a>
+    </li>
+</ul>
+</div>
+<!-- Font Awesome CDN (Add this in the <head> section of your HTML) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMoQ4d1Xc8D5Y5i5E1A4I4X5Y5g7Z5g7w5Z5g" crossorigin="anonymous">
+    <div>
+     <h2 class="text-xl font-semibold">
+      Contact Detail
+     </h2>
+     <div class="border-t-2 border-blue-400 w-16 mx-auto my-2">
+     </div>
+     <ul class="list-none">
+      <li>
+       Rajeev nagar sahibabad near Indira Gate, New Delhi
+      </li>
+      <li>
+       healthhopeorgs@gmail.com
+      </li>
+      <li>
+       +91 12345 67890
+      </li>
+     </ul>
+    </div>
+   </div>
+   </div>
+   <div class="border-t border-black my-0">
+
+   </div>
+   <div class="text-center">
+    <p>
+     Privacy Policy | Copyright © 2023 healthhope | Powered by healthhope
+    </p>
+    <div class="flex justify-center space-x-4 mt-4">
+     <a class="text-blue-500" href="about_us.html">
+      About Us
+     </a>
+     <a class="text-blue-500" href="contactus.html">
+      Contact Us
+     </a>
+    </div>
+   </div>
+  </div>
+   
+
+ 
+ </body>
+</html>

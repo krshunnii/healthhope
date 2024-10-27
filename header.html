@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Our Team</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      padding-top: 64px; /* Add padding for fixed header height */
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <!-- Header Section -->
+  <header class="bg-[#1D81A9] py-4 w-full fixed top-0 left-0 z-10 shadow-md">
+    <div class="flex justify-between items-center px-8">
+      <div class="text-2xl font-bold text-white">
+        <a href="home.html" class="text-white hover:text-gray-200">
+        <i class="fas fa-stethoscope"></i> HealthHope
+      </div>
+      <nav class="space-x-4 mr-10">
+        <a class="text-white hover:text-gray-200" href="about_us.html">About Us</a>
+        <a class="text-white hover:text-gray-200" href="our_team.html">Our Doctors</a>
+        <a class="text-white hover:text-gray-200" href="resources.html">Resources</a>
+        <a class="text-white hover:text-gray-200" href="contactus.html">Contact Us</a>
+      </nav>
+    </div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Sign Up Model</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .profile-icon {
+            font-size: 30px;
+            cursor: pointer;
+            margin-top: 10;
+            position: fixed;
+            top: 8px;
+            right: 20px;
+        }
+
+        .modal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form h2 {
+            text-align: center; /* Center the heading text */
+        }
+
+
+        .form input {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form button {
+            padding: 10px;
+            background-color: #1D81A9; /* Change the button color here */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form button:hover {
+            background-color: #156a8a; /* Optional: Change the hover color for better contrast */
+          }
+
+        .hidden {
+            display: none;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-icon" onclick="openModal()">
+        👤
+    </div>
+
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="form-container">
+                <div id="login-form" class="form">
+                    <h2>Login</h2>
+                    <input type="email" id="login-email" placeholder="Email" required>
+                    <input type="password" id="login-password" placeholder="Password" required>
+                    <button onclick="login()">Login</button>
+                    <p>Don't have an account? <a href="#" onclick="showSignUp()">Sign Up</a></p>
+
+                </div>
+                <div id="signup-form" class="form hidden">
+                    <h2>Sign Up</h2>
+                    <input type="text" id="signup-username" placeholder="Username" required>
+                    <input type="email" id="signup-email" placeholder="Email" required>
+                    <input type="password" id="signup-password" placeholder="Password" required>
+                    <button onclick="signUp()">Sign Up</button>
+                    <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let users = [];
+
+        function openModal() {
+            document.getElementById('modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+        }
+
+        function showSignUp() {
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('signup-form').classList.remove('hidden');
+        }
+
+        function showLogin() {
+            document.getElementById('signup-form').classList.add('hidden');
+            document.getElementById('login-form').classList.remove('hidden');
+        }
+
+        function login() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            const user = users.find(user => user.email === email && user.password === password);
+
+            if (user) {
+                alert(`Welcome back, ${user.username}!`);
+            } else {
+                alert('Invalid email or password');
+            }
+        }
+
+        function signUp() {
+            const username = document.getElementById('signup-username').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+
+            const user = {
+                username,
+                email,
+                password
+            };
+
+            users.push(user);
+
+            alert(`Welcome, ${username}! You have successfully signed up.`);
+            showLogin();
+        }
+    </script>
+  </header>

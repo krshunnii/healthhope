@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Prediction</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Disease Prediction Based on Symptoms</h2>
+        <form action="/predict" method="POST">
+            <label for="symptoms">Select Symptoms:</label>
+            <div class="symptom-list">
+                {% for symptom in symptoms %}
+                    <label>
+                        <input type="checkbox" name="symptoms" value="{{ symptom }}"> {{ symptom }}
+                    </label><br>
+                {% endfor %}
+            </div>
+            <button type="submit">Predict Disease</button>
+        </form>
+    </div>
+</body>
+</html>

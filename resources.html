@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Our Team</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      padding-top: 64px; /* Add padding for fixed header height */
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <!-- Header Section -->
+  <header class="bg-[#1D81A9] py-4 w-full fixed top-0 left-0 z-10 shadow-md">
+    <div class="flex justify-between items-center px-8">
+      <div class="text-2xl font-bold text-white">
+        <a href="home.html" class="text-white hover:text-gray-200">
+        <i class="fas fa-stethoscope"></i> HealthHope
+      </div>
+      <nav class="space-x-4 mr-10">
+        <a class="text-white hover:text-gray-200" href="about_us.html">About Us</a>
+        <a class="text-white hover:text-gray-200" href="our_team.html">Our Doctors</a>
+        <a class="text-white hover:text-gray-200" href="resources.html">Resources</a>
+        <a class="text-white hover:text-gray-200" href="contactus.html">Contact Us</a>
+      </nav>
+    </div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Sign Up Model</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        .profile-icon {
+            font-size: 30px;
+            cursor: pointer;
+            margin-top: 10;
+            position: fixed;
+            top: 8px;
+            right: 20px;
+        }
+
+        .modal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form h2 {
+            text-align: center; /* Center the heading text */
+        }
+
+
+        .form input {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form button {
+            padding: 10px;
+            background-color: #1D81A9; /* Change the button color here */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form button:hover {
+            background-color: #156a8a; /* Optional: Change the hover color for better contrast */
+          }
+
+        .hidden {
+            display: none;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-icon" onclick="openModal()">
+        👤
+    </div>
+
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="form-container">
+                <div id="login-form" class="form">
+                    <h2>Login</h2>
+                    <input type="email" id="login-email" placeholder="Email" required>
+                    <input type="password" id="login-password" placeholder="Password" required>
+                    <button onclick="login()">Login</button>
+                    <p>Don't have an account? <a href="#" onclick="showSignUp()">Sign Up</a></p>
+
+                </div>
+                <div id="signup-form" class="form hidden">
+                    <h2>Sign Up</h2>
+                    <input type="text" id="signup-username" placeholder="Username" required>
+                    <input type="email" id="signup-email" placeholder="Email" required>
+                    <input type="password" id="signup-password" placeholder="Password" required>
+                    <button onclick="signUp()">Sign Up</button>
+                    <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let users = [];
+
+        function openModal() {
+            document.getElementById('modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+        }
+
+        function showSignUp() {
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('signup-form').classList.remove('hidden');
+        }
+
+        function showLogin() {
+            document.getElementById('signup-form').classList.add('hidden');
+            document.getElementById('login-form').classList.remove('hidden');
+        }
+
+        function login() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            const user = users.find(user => user.email === email && user.password === password);
+
+            if (user) {
+                alert(`Welcome back, ${user.username}!`);
+            } else {
+                alert('Invalid email or password');
+            }
+        }
+
+        function signUp() {
+            const username = document.getElementById('signup-username').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+
+            const user = {
+                username,
+                email,
+                password
+            };
+
+            users.push(user);
+
+            alert(`Welcome, ${username}! You have successfully signed up.`);
+            showLogin();
+        }
+    </script>
+  </header>
+<main class="container mx-auto p-8">
+    <h1 class="text-3xl font-bold text-center mb-8 text-[#1D81A9]">Resources Section</h1>
+
+    <!-- Articles and Guides Section -->
+    <section class="mb-12 bg-white rounded-lg shadow-md p-8">
+        <h2 class="text-2xl font-semibold text-[#1D81A9] mb-4">Articles and Guides</h2>
+        <p class="text-gray-700 mb-2">Explore a collection of informative articles and guides to help you navigate your health journey.</p>
+        <img src="https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Articles and Guides" class="rounded-lg mb-4">
+        <ul class="list-disc pl-5">
+            <li><a href="#" class="text-[#1D81A9] hover:underline">Understanding Health Insurance</a></li>
+            <li><a href="#" class="text-[#1D81A9] hover:underline">Nutrition Tips for a Healthy Lifestyle</a></li>
+            <li><a href="#" class="text-[#1D81A9] hover:underline">Managing Stress and Mental Health</a></li>
+        </ul>
+    </section>
+
+    <!-- Impact Tracker Section -->
+    <section class="mb-12 bg-[#1D81A9] rounded-lg shadow-md p-8">
+        <h2 class="text-2xl font-semibold text-white mb-4">Impact Tracker</h2>
+        <p class="text-white">Track the positive impact of our programs and initiatives on community health.</p>
+        <img src="https://images.pexels.com/photos/8542561/pexels-photo-8542561.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Impact Tracker" class="rounded-lg mb-4">
+        <button class="bg-[#1D81A9] text-white px-4 py-2 rounded hover:bg-[#0B5B73]">View Impact Report</button>
+    </section>
+
+    <!-- Training Workshops Section -->
+    <section class="mb-12 bg-white rounded-lg shadow-md p-8">
+        <h2 class="text-2xl font-semibold text-[#1D81A9] mb-4">Training Workshops</h2>
+        <p class="text-gray-700 mb-2">Join our workshops to gain skills and knowledge in various health-related topics.</p>
+        <img src="https://images.pexels.com/photos/23625648/pexels-photo-23625648/free-photo-of-man-giving-a-speech-at-the-gym-accompanied-by-a-doctor.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Training Workshops" class="rounded-lg mb-4">
+        <ul class="list-disc pl-5">
+            <li><a href="#" class="text-[#1D81A9] hover:underline">First Aid Training</a></li>
+            <li><a href="#" class="text-[#1D81A9] hover:underline">Nutrition and Wellness Workshop</a></li>
+            <li><a href="#" class="text-[#1D81A9] hover:underline">Mental Health Awareness Training</a></li>
+        </ul>
+    </section>
+
+    <!-- Predict Diseases with Symptoms Section -->
+    <section class="mb-12 bg-white rounded-lg shadow-md p-8">
+        <h2 class="text-2xl font-semibold text-[#1D81A9] mb-4">Predict Diseases with Symptoms</h2>
+        <p class="text-gray-700 mb-4">Input symptoms to predict possible diseases and get insights for better health management.</p>
+        <a href="http://127.0.0.1:5001/" class="bg-[#1D81A9] text-white px-4 py-2 rounded hover:bg-[#0B5B73]">Predict</a>
+
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="mb-12 bg-[#1D81A9] rounded-lg shadow-md p-8">
+        <h2 class="text-2xl font-semibold text-white mb-4">Frequently Asked Questions (FAQ)</h2>
+        <div class="text-gray-700 mb-2">
+            <h3 class="font-bold">1. What services do you offer?</h3>
+            <p>We provide a range of healthcare services including consultations, workshops, and resources for better health.</p>
+        </div>
+        <div class="text-gray-700 mb-2">
+            <h3 class="font-bold">2. How can I schedule an appointment?</h3>
+            <p>You can schedule an appointment through our website or by contacting our office directly.</p>
+        </div>
+        <div class="text-gray-700 mb-2">
+            <h3 class="font-bold">3. Where can I find more resources ?</h3>
+            <p>We have a dedicated resources section on our website where you can find articles, guides, and more.</p>
+        </div>
+    </section>
+</main>
+
+<footer class="bg-gray-200 py-4">
+    <div class="container mx-auto text-gray-600 text-center">
+        <p>&copy; 2023 Health-Hope. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>
+<html>
+ <head>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+ </head>
+ 
+ <body class="bg-blue-100">
+
+  <div class="container mx-auto py-8">
+   <div class="text-center">
+    <i class="fas fa-stethoscope"></i> HealthHope
+    <h1 class="text-2xl font-semibold">
+    </h1>
+    <p class="italic">
+     "Connecting healthcare professionals with underserved communities to promote global health equity"
+    </p>
+   </div>
+   <div class="border-t border-black my-0">
+   </div>
+         <div class="text-center bg-[#1D81A9] text-white py-4">
+
+   <div class="grid grid-cols-3 gap-8 text-center">
+
+    <div>
+     <h2 class="text-xl font-semibold">
+      Quick links
+     </h2>
+     <div class="border-t-2 border-blue-400 w-16 mx-auto my-2">
+     </div>
+     <ul class="list-none">
+      <li>
+        <a href="our_team.html" class="text-white-500 hover:text-blue-700">Our Team</a>
+      </li>
+      <li>
+      <!-- Modify the Register link to open the login modal -->
+      <a href="javascript:void(0);" onclick="openModal()" class="text-white-500 hover:text-blue-700">Register</a>
+    </li>
+
+
+<!-- Include the modal code here -->
+<div id="modal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="form-container">
+            <div id="login-form" class="form">
+                <h2>Login</h2>
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button onclick="login()">Login</button>
+                <p>Don't have an account? <a href="#" onclick="showSignUp()">Sign Up</a></p>
+            </div>
+            <div id="signup-form" class="form hidden">
+                <h2>Sign Up</h2>
+                <input type="text" id="signup-username" placeholder="Username" required>
+                <input type="email" id="signup-email" placeholder="Email" required>
+                <input type="password" id="signup-password" placeholder="Password" required>
+                <button onclick="signUp()">Sign Up</button>
+                <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let users = [];
+
+    function openModal() {
+        document.getElementById('modal').classList.remove('hidden');
+        showLogin(); // Show the login form when the modal opens
+    }
+
+    function closeModal() {
+        document.getElementById('modal').classList.add('hidden');
+    }
+
+    function showSignUp() {
+        document.getElementById('login-form').classList.add('hidden');
+        document.getElementById('signup-form').classList.remove('hidden');
+    }
+
+    function showLogin() {
+        document.getElementById('signup-form').classList.add('hidden');
+        document.getElementById('login-form').classList.remove('hidden');
+    }
+
+    function login() {
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+
+        const user = users.find(user => user.email === email && user.password === password);
+
+        if (user) {
+            alert(`Welcome back, ${user.username}!`);
+        } else {
+            alert('Invalid email or password');
+        }
+    }
+
+    function signUp() {
+        const username = document.getElementById('signup-username').value;
+        const email = document.getElementById('signup-email').value;
+        const password = document.getElementById('signup-password').value;
+
+        const user = {
+            username,
+            email,
+            password
+        };
+
+        users.push(user);
+
+        alert(`Welcome, ${username}! You have successfully signed up.`);
+        showLogin();
+    }
+</script>
+      <li>
+        <a href="our_team.html" class="text-white-500 hover:text-blue-700">Resources</a>
+      </li>
+      <li>
+       FAQ
+      </li>
+     </ul>
+    </div>
+    <div>
+    <h2 class="text-xl font-semibold">
+        Social Medias
+    </h2>
+    
+   <div class="border-t-2 border-blue-400 w-16 mx-auto my-2"></div>
+<ul class="list-none flex justify-center space-x-4">
+    <li>
+        <a href="https://www.facebook.com/YourPageName" target="_blank" class="text-blue-800 hover:text-blue-600">
+            <i class="fab fa-facebook-f fa-lg"></i>
+        </a>
+    </li>
+    <li>
+        <a href="https://www.instagram.com/YourUsername" target="_blank" class="text-red-600 hover:text-red-400">
+            <i class="fab fa-instagram fa-lg"></i>
+        </a>
+    </li>
+    <li>
+        <a href="https://wa.me/YourPhoneNumber" target="_blank" class="text-green-500 hover:text-green-500">
+            <i class="fab fa-whatsapp fa-lg"></i>
+        </a>
+    </li>
+    <li>
+        <a href="https://twitter.com/YourUsername" target="_blank" class="text-blue-500 hover:text-blue-300">
+            <i class="fab fa-twitter fa-lg"></i>
+        </a>
+    </li>
+</ul>
+</div>
+<!-- Font Awesome CDN (Add this in the <head> section of your HTML) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMoQ4d1Xc8D5Y5i5E1A4I4X5Y5g7Z5g7w5Z5g" crossorigin="anonymous">
+    <div>
+     <h2 class="text-xl font-semibold">
+      Contact Detail
+     </h2>
+     <div class="border-t-2 border-blue-400 w-16 mx-auto my-2">
+     </div>
+     <ul class="list-none">
+      <li>
+       Rajeev nagar sahibabad near Indira Gate, New Delhi
+      </li>
+      <li>
+       healthhopeorgs@gmail.com
+      </li>
+      <li>
+       +91 12345 67890
+      </li>
+     </ul>
+    </div>
+   </div>
+   </div>
+   <div class="border-t border-black my-0">
+
+   </div>
+   <div class="text-center">
+    <p>
+     Privacy Policy | Copyright © 2023 healthhope | Powered by healthhope
+    </p>
+    <div class="flex justify-center space-x-4 mt-4">
+     <a class="text-blue-500" href="#">
+      About Us
+     </a>
+     <a class="text-blue-500" href="#">
+      Contact Us
+     </a>
+    </div>
+   </div>
+  </div>
+   
+
+ 
+ </body>
+</html>
